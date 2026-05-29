@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Happy Birthday 💗</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  overflow:hidden;
+  background:#090311;
+  font-family:'Poppins',sans-serif;
+  color:white;
+  height:100vh;
+}
+
+/* BACKGROUND */
+
+.bg{
+  position:fixed;
+  inset:0;
+
+  background:
+  radial-gradient(circle at top,#4b1639,#090311 70%);
+
+  z-index:-5;
+}
+
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:-4;
+}
+
+/* LOADER */
+
+.loader{
+  position:fixed;
+  inset:0;
+
+  background:#090311;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+
+  z-index:999;
+
+  transition:1s;
+}
+
+.loader.hidden{
+  opacity:0;
+  pointer-events:none;
+}
+
+.loader-circle{
+  width:120px;
+  height:120px;
+
+  border-radius:50%;
+
+  border:5px solid rgba(255,255,255,.1);
+  border-top:5px solid #ff8bc5;
+
+  animation:spin 1s linear infinite;
+}
+
+.loader-text{
+  margin-top:25px;
+  letter-spacing:3px;
+  color:#ffb8dc;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+/* MAIN */
+
+.container{
+  position:relative;
+
+  width:100%;
+  height:100vh;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+
+  padding:20px;
+}
+
+/* GIFT BOX */
+
+.gift-wrapper{
+  text-align:center;
+  transition:1s;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:20px;
+  z-index:10;
+}
+
+.gift-box{
+  width:190px;
+  height:190px;
+  position:relative;
+  margin:auto;
+  cursor:pointer;
+  animation:float 3s ease-in-out infinite;
+  filter:drop-shadow(0 0 25px rgba(255,105,180,.6));
+}
+
+.gift-img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  transition:0.4s;
+}
+
+.gift-box:hover .gift-img{
+  transform:scale(1.08);
+}
+
+@keyframes bounceGift{
+  0%,100%{transform:translateX(-50%) translateY(0);}
+  50%{transform:translateX(-50%) translateY(-10px);}
+}
+
+.gift-box:hover{
+  transform:scale(1.05);
+}
+
+.box{
+  width:100%;
+  height:100%;
+
+  background:
+  linear-gradient(135deg,#ff4fa3,#ff9ad0);
+
+  border-radius:28px;
+
+  box-shadow:
+  0 0 45px rgba(255,105,180,.7);
+}
+
+.ribbon-v{
+  position:absolute;
+
+  width:35px;
+  height:100%;
+
+  background:white;
+
+  left:50%;
+  transform:translateX(-50%);
+}
+
+.ribbon-h{
+  position:absolute;
+
+  width:100%;
+  height:35px;
+
+  background:white;
+
+  top:50%;
+  transform:translateY(-50%);
+}
+
+.top{
+  position:absolute;
+
+  width:220px;
+  height:50px;
+
+  background:#ffb6dc;
+
+  left:50%;
+  transform:translateX(-50%);
+
+  top:-20px;
+
+  border-radius:18px;
+}
+
+.tap{
+  margin-top:10px;
+  color:#ffd9eb;
+  opacity:.9;
+  font-size:14px;
+  z-index:10;
+}
+
+/* CONTENT */
+
+.content{
+  position:absolute;
+  inset:0;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+
+  text-align:center;
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:1s;
+
+  padding:20px;
+}
+
+.content.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.title{
+  font-size:clamp(3rem,8vw,6rem);
+
+  font-family:'Orbitron',sans-serif;
+  font-weight:900;
+
+  background:
+  linear-gradient(
+  90deg,
+  #ffb3da,
+  #ffffff,
+  #ff6eb7
+  );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+
+  text-shadow:
+  0 0 35px rgba(255,105,180,.8);
+}
+
+.name{
+  margin-top:10px;
+
+  font-size:clamp(2rem,6vw,4rem);
+
+  color:#ff9fd0;
+  font-weight:700;
+}
+
+.typing{
+  margin-top:30px;
+
+  max-width:700px;
+
+  line-height:1.9;
+
+  color:#fff0f7;
+
+  min-height:120px;
+}
+
+/* BUTTON */
+
+.buttons{
+  display:flex;
+  gap:15px;
+
+  flex-wrap:wrap;
+
+  justify-content:center;
+
+  margin-top:30px;
+}
+
+.btn{
+  padding:15px 30px;
+
+  border:none;
+  border-radius:999px;
+
+  background:rgba(255,255,255,.08);
+
+  backdrop-filter:blur(14px);
+
+  color:white;
+
+  cursor:pointer;
+
+  transition:.4s;
+
+  border:1px solid rgba(255,255,255,.15);
+}
+
+.btn:hover{
+  transform:
+  translateY(-5px)
+  scale(1.05);
+
+  box-shadow:
+  0 0 30px rgba(255,105,180,.45);
+}
+
+/* POPUP */
+
+.popup{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,.7);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:.5s;
+
+  z-index:100;
+}
+
+.popup.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.popup-box{
+  width:90%;
+  max-width:450px;
+
+  padding:40px;
+
+  border-radius:30px;
+
+  background:
+  rgba(255,255,255,.08);
+
+  backdrop-filter:blur(20px);
+
+  text-align:center;
+
+  border:
+  1px solid rgba(255,255,255,.15);
+
+  animation:popup .7s ease;
+}
+
+.popup-title{
+  font-size:2rem;
+  color:#ffb8dc;
+
+  margin-bottom:20px;
+}
+
+.popup-text{
+  line-height:1.9;
+  color:#fff0f7;
+}
+
+@keyframes popup{
+
+  from{
+    opacity:0;
+    transform:
+    translateY(60px)
+    scale(.8);
+  }
+
+  to{
+    opacity:1;
+    transform:
+    translateY(0)
+    scale(1);
+  }
+
+}
+
+/* FLOATING */
+
+.star{
+  position:absolute;
+  color:#ffb1d8;
+
+  animation:fly linear forwards;
+}
+
+.rain{
+  position:absolute;
+  animation:rainFall linear forwards;
+}
+
+@keyframes rainFall{
+
+  from{
+    transform:translateY(-100px);
+    opacity:0;
+  }
+
+  20%{
+    opacity:1;
+  }
+
+  to{
+    transform:translateY(110vh);
+    opacity:0;
+  }
+
+}
+
+@keyframes fly{
+
+  from{
+    transform:translateY(0) scale(.5);
+    opacity:0;
+  }
+
+  50%{
+    opacity:1;
+  }
+
+  to{
+    transform:
+    translateY(-110vh)
+    scale(1.4);
+
+    opacity:0;
+  }
+
+}
+
+@keyframes float{
+
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-18px);
+  }
+
+}
+
+/* GALLERY */
+
+.gallery{
+  position:fixed;
+  inset:0;
+
+  background:
+  rgba(0,0,0,.82);
+
+  backdrop-filter:blur(15px);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:.6s;
+
+  z-index:120;
+}
+
+.gallery.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.gallery-title{
+  font-size:2rem;
+  color:#ffc1df;
+
+  margin-bottom:30px;
+}
+
+.dump-container{
+  position:relative;
+
+  width:90%;
+  max-width:900px;
+
+  height:520px;
+}
+
+.dump-photo{
+  position:absolute;
+
+  width:200px;
+  height:260px;
+
+  border-radius:25px;
+
+  overflow:hidden;
+
+  background:white;
+
+  padding:10px;
+
+  box-shadow:
+  0 0 30px rgba(255,105,180,.25);
+
+  transition:.5s;
+}
+
+.dump-photo img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  border-radius:18px;
+}
+
+.dump-photo:hover{
+  transform:
+  scale(1.08)
+  rotate(0deg) !important;
+
+  z-index:20;
+}
+
+.photo1{
+  top:10px;
+  left:40px;
+  transform:rotate(-8deg);
+}
+
+.photo2{
+  top:50px;
+  right:70px;
+  transform:rotate(10deg);
+}
+
+.photo3{
+  top:210px;
+  left:180px;
+  transform:rotate(7deg);
+}
+
+.photo4{
+  top:220px;
+  right:170px;
+  transform:rotate(-10deg);
+}
+
+.photo5{
+  top:120px;
+  left:360px;
+  transform:rotate(-4deg);
+}
+
+/* SPECIAL GIFT */
+
+.gift-popup{
+  position:fixed;
+  inset:0;
+
+  background:
+  rgba(0,0,0,.82);
+
+  backdrop-filter:blur(15px);
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  opacity:0;
+  pointer-events:none;
+
+  transition:.6s;
+
+  z-index:140;
+}
+
+.gift-popup.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+.gift-content{
+  width:90%;
+  max-width:500px;
+
+  padding:35px;
+
+  border-radius:35px;
+
+  background:
+  rgba(255,255,255,.08);
+
+  backdrop-filter:blur(20px);
+
+  border:
+  1px solid rgba(255,255,255,.15);
+
+  text-align:center;
+}
+
+.gift-title{
+  font-size:2rem;
+  color:#ffc1df;
+
+  margin-bottom:10px;
+}
+
+.gift-sub{
+  color:#ffe5f1;
+  margin-bottom:30px;
+}
+
+.gift-card{
+  width:250px;
+
+  margin:auto;
+
+  background:
+  rgba(255,255,255,.06);
+
+  border-radius:28px;
+
+  padding:18px;
+
+  box-shadow:
+  0 0 30px rgba(255,105,180,.2);
+}
+
+.gift-photo{
+  width:100%;
+  height:230px;
+
+  overflow:hidden;
+
+  border-radius:22px;
+
+  margin-bottom:18px;
+}
+
+.gift-photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.gift-name{
+  font-size:1.2rem;
+  color:#ffd2e8;
+
+  margin-bottom:10px;
+}
+
+.gift-desc{
+  color:#fff0f7;
+  line-height:1.7;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  .gift-box{
+    width:150px;
+    height:150px;
+  }
+
+  .top{
+    width:180px;
+  }
+
+  .dump-container{
+    height:600px;
+  }
+
+  .dump-photo{
+    width:130px;
+    height:180px;
+  }
+
+  .photo1{
+    left:10px;
+    top:20px;
+  }
+
+  .photo2{
+    right:10px;
+    top:40px;
+  }
+
+  .photo3{
+    left:50px;
+    top:220px;
+  }
+
+  .photo4{
+    right:40px;
+    top:260px;
+  }
+
+  .photo5{
+    left:120px;
+    top:120px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<canvas id="canvas"></canvas>
+
+<!-- LOADER -->
+
+<div class="loader" id="loader">
+
+  <div class="loader-circle"></div>
+
+  <div class="loader-text">
+    preparing surprise...
+  </div>
+
+</div>
+
+<div class="container">
+
+  <!-- GIFT -->
+
+  <div class="gift-wrapper" id="giftWrapper">
+
+    <div class="gift-box" onclick="openGift()">
+  
+  <div class="gift-box" onclick="openGift()">
+
+  <img class="gift-img" src="gifticon.png">
+
+</div>
+
+  </div>
+
+    <div class="tap">
+      pencet hadiahnyaa
+    </div>
+
+  </div>
+
+  <!-- CONTENT -->
+
+  <div class="content" id="content">
+
+    <div class="title">
+      HAPPY BIRTHDAY
+    </div>
+
+    <div class="name">
+      Syakira Hanifa
+    </div>
+
+    <div class="typing" id="typing"></div>
+
+    <div class="buttons">
+
+      <button class="btn" onclick="showPopup()">
+        secret message 💌
+      </button>
+
+      <button class="btn" onclick="showLoveRain()">
+       surprise 💗
+      </button>
+
+      <button class="btn" onclick="openGallery()">
+        Hanifa's Dump 📸
+      </button>
+
+      <button class="btn" onclick="openGiftBox()">
+        special gift 🎀
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- POPUP -->
+
+<div class="popup" id="popup">
+
+  <div class="popup-box">
+
+    <div class="popup-title">
+      for you 🤍
+    </div>
+
+    <div class="popup-text">
+
+      HALAWW NIFAA 💗
+      <br><br>
+
+      Semoga Allah lancarkan segala urusan dan rezekinya Hanifa ✨
+      Maaf belum bisa jadi seorang kaka yang seperti kamu harapkan
+
+    </div>
+
+    <br>
+
+    <button class="btn" onclick="closePopup()">
+      tutup
+    </button>
+
+  </div>
+
+</div>
+
+<!-- GALLERY -->
+
+<div class="gallery" id="gallery">
+
+  <div class="gallery-title">
+    Beberapa Foto Hanifa dari TK sampai sekarang 💗
+  </div>
+
+  <div class="dump-container">
+
+    <div class="dump-photo photo1">
+      <img src="hanifa1.jpeg">
+    </div>
+
+    <div class="dump-photo photo2">
+      <img src="hanifa2.jpeg">
+    </div>
+
+    <div class="dump-photo photo3">
+      <img src="hanifa3.jpeg">
+    </div>
+
+    <div class="dump-photo photo4">
+      <img src="hanifa4.jpeg">
+    </div>
+
+    <div class="dump-photo photo5">
+      <img src="hanifa5.jpeg">
+    </div>
+
+  </div>
+
+  <button class="btn" onclick="closeGallery()">
+    kembali ✨
+  </button>
+
+</div>
+
+<!-- SPECIAL GIFT -->
+
+<div class="gift-popup" id="giftPopup">
+
+  <div class="gift-content">
+
+    <div class="gift-title">
+      special birthday gift 🎀
+    </div>
+
+    <div class="gift-sub">
+      specially prepared for you 💗
+    </div>
+
+    <div class="gift-card">
+
+      <div class="gift-photo">
+        <img src="gift.jpeg">
+      </div>
+
+      <div class="gift-name">
+        your fav food✨
+      </div>
+
+      <div class="gift-desc">
+
+       Little gift for you, selamat menikmati ya bocil 🤍 
+       maaf ya kaka baru bisa ngasih yang sederhana kayak gini, 
+       semoga kamu suka
+
+      </div>
+
+    </div>
+
+    <br>
+
+    <button class="btn" onclick="closeGiftBox()">
+      tutup 🎀
+    </button>
+
+  </div>
+
+</div>
+
+<script>
+
+/* LOADER */
+
+window.addEventListener('load',()=>{
+
+  setTimeout(()=>{
+
+    document
+    .getElementById('loader')
+    .classList.add('hidden');
+
+  },1800);
+
+});
+
+/* MATRIX */
+
+const canvas =
+document.getElementById('canvas');
+
+const ctx =
+canvas.getContext('2d');
+
+canvas.width = innerWidth;
+canvas.height = innerHeight;
+
+const letters =
+'01アイウエオカキクケコサシスセソ';
+
+const fontSize = 16;
+
+const columns =
+canvas.width / fontSize;
+
+const drops = [];
+
+for(let x=0;x<columns;x++){
+  drops[x]=1;
+}
+
+function draw(){
+
+  ctx.fillStyle =
+  'rgba(9,3,17,0.08)';
+
+  ctx.fillRect(
+  0,0,
+  canvas.width,
+  canvas.height
+  );
+
+  ctx.fillStyle='#ff71ba';
+
+  ctx.font =
+  fontSize + 'px monospace';
+
+  for(let i=0;i<drops.length;i++){
+
+    const text =
+    letters[
+    Math.floor(
+    Math.random()*letters.length
+    )];
+
+    ctx.fillText(
+    text,
+    i*fontSize,
+    drops[i]*fontSize
+    );
+
+    if(
+      drops[i]*fontSize >
+      canvas.height &&
+      Math.random() > 0.975
+    ){
+      drops[i]=0;
+    }
+
+    drops[i]++;
+
+  }
+
+}
+
+setInterval(draw,35);
+
+/* OPEN GIFT */
+
+function openGift(){
+
+  document
+  .getElementById('giftWrapper')
+  .style.opacity='0';
+
+  setTimeout(()=>{
+
+    document
+    .getElementById('giftWrapper')
+    .style.display='none';
+
+    document
+    .getElementById('content')
+    .classList.add('show');
+
+    typeText();
+
+  },700);
+
+}
+
+/* TYPING */
+
+const text =
+`Barakallah Fii Umrik 💗 
+
+Semoga selalu dilindungi Allah, diberi kesehatan, dan dimudahkan di setiap langkah kecilmu.
+tumbuh jadi anak yang makin pintar, baik, dan bahagia setiap harinya yaww`;
+
+let index = 0;
+
+function typeText(){
+
+  const typing =
+  document.getElementById('typing');
+
+  function write(){
+
+    if(index < text.length){
+
+      typing.innerHTML +=
+      text.charAt(index);
+
+      index++;
+
+      setTimeout(write,35);
+
+    }
+
+  }
+
+  write();
+
+}
+
+/* POPUP */
+
+function showPopup(){
+
+  document
+  .getElementById('popup')
+  .classList.add('show');
+
+}
+
+function closePopup(){
+
+  document
+  .getElementById('popup')
+  .classList.remove('show');
+
+}
+
+/* PHOTO RAIN */
+
+function showLoveRain(){
+
+  for(let i=0;i<45;i++){
+
+    setTimeout(()=>{
+
+      const photo =
+      document.createElement('img');
+
+      photo.src='hanifa.jpeg';
+
+      photo.classList.add('rain');
+
+      photo.style.position='fixed';
+
+      photo.style.left=
+      Math.random()*window.innerWidth
+      +'px';
+
+      photo.style.top='-80px';
+
+      photo.style.width=
+      (Math.random()*40+50)+'px';
+
+      photo.style.height=
+      (Math.random()*40+50)+'px';
+
+      photo.style.objectFit='cover';
+
+      photo.style.borderRadius='18px';
+
+      photo.style.boxShadow=
+      '0 0 20px rgba(255,105,180,.45)';
+
+      photo.style.animationDuration=
+      (Math.random()*3+3)+'s';
+
+      photo.style.zIndex='999';
+
+      document.body.appendChild(photo);
+
+      setTimeout(()=>{
+        photo.remove();
+      },7000);
+
+    },i*120);
+
+  }
+
+}
+
+/* GALLERY */
+
+function openGallery(){
+
+  document
+  .getElementById('gallery')
+  .classList.add('show');
+
+}
+
+function closeGallery(){
+
+  document
+  .getElementById('gallery')
+  .classList.remove('show');
+
+}
+
+/* SPECIAL GIFT */
+
+function openGiftBox(){
+
+  document
+  .getElementById('giftPopup')
+  .classList.add('show');
+
+}
+
+function closeGiftBox(){
+
+  document
+  .getElementById('giftPopup')
+  .classList.remove('show');
+
+}
+
+window.addEventListener('resize',()=>{
+
+  canvas.width=innerWidth;
+  canvas.height=innerHeight;
+
+});
+
+</script>
+
+</body>
+</html>
